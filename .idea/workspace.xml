@@ -9,12 +9,19 @@
         <option name="name" value="faceRecognizer" />
         <option name="pid" value="" />
       </filter>
+      <filter>
+        <option name="logLevel" value="verbose" />
+        <option name="logMessagePattern" value="" />
+        <option name="logTagPattern" value="MailApp" />
+        <option name="name" value="mail" />
+        <option name="pid" value="" />
+      </filter>
     </filters>
   </component>
   <component name="AndroidDesignerProfile">
     <option name="fullProfile">
       <profile>
-        <option name="device" value="2.7in QVGA" />
+        <option name="device" value="4in WVGA (Nexus S)" />
         <option name="deviceConfiguration" value="Landscape" />
         <option name="targetHashString" value="android-16" />
         <option name="theme" value="AppTheme" />
@@ -34,6 +41,9 @@
       </GlobalState>
     </option>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="mail" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" name="Default" comment="" />
     <ignored path="faceDetection.iws" />
@@ -41,12 +51,18 @@
     <file path="$PROJECT_DIR$/gen/com/example/faceRecognition/Manifest.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358276635959" ignored="false" />
     <file path="$PROJECT_DIR$/gen/com/example/faceRecognition/BuildConfig.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358276635959" ignored="false" />
     <file path="$PROJECT_DIR$/gen/com/example/faceRecognition/R.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358276635959" ignored="false" />
-    <file path="/MainActivity.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358285432632" ignored="false" />
-    <file path="/fragment.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358285038794" ignored="false" />
-    <file path="/AndroidManifest.xml" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358278046231" ignored="false" />
-    <file path="/Dummy.txt" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358278330776" ignored="false" />
+    <file path="/MainActivity.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358292673164" ignored="false" />
+    <file path="/fragment.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358291455577" ignored="false" />
+    <file path="/AndroidManifest.xml" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358289361644" ignored="false" />
+    <file path="/Dummy.txt" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358290833207" ignored="false" />
     <file path="/.project" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358279521066" ignored="false" />
-    <file path="/strings.xml" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358283128260" ignored="false" />
+    <file path="/strings.xml" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358287304234" ignored="false" />
+    <file path="/SendEmailTask.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358293119341" ignored="false" />
+    <file path="/activity_main.xml" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358290610224" ignored="false" />
+    <file path="/Mail.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358293550639" ignored="false" />
+    <file path="/set_email_layout.xml" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358290976413" ignored="false" />
+    <file path="/SetEmail.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358293414296" ignored="false" />
+    <file path="/AppPreferences.java" changelist="1db885b9-d670-4d73-9f9c-1e95b7fe47bd" time="1358291495501" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,37 +122,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name=".project" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.project">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="24" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styles.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="28" selection-start="80" selection-end="93" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="40" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0">
+            <state line="8" column="40" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -148,7 +137,7 @@
             <state />
           </provider>
           <provider editor-type-id="text-editor">
-            <state line="39" column="44" selection-start="1600" selection-end="1615" vertical-scroll-proportion="0.0">
+            <state line="49" column="38" selection-start="2234" selection-end="2243" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -157,17 +146,74 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="1846" selection-end="1846" vertical-scroll-proportion="0.0">
+            <state line="112" column="43" selection-start="3932" selection-end="3932" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#8128#8293#0" expanded="true" />
+                <element signature="e#8282#8283#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetEmail.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/email/SetEmail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="82" selection-start="987" selection-end="987" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SendEmailTask.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/SendEmailTask.java">
+      <file leaf-file-name="AppPreferences.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/AppPreferences.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="26" selection-start="139" selection-end="139" vertical-scroll-proportion="0.16587678">
+            <state line="20" column="5" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="set_email_layout.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/set_email_layout.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state line="16" column="33" selection-start="693" selection-end="693" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SendEmailTask.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/email/SendEmailTask.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="27" selection-start="533" selection-end="533" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="33" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mail.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/email/Mail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="78" column="67" selection-start="2554" selection-end="2554" vertical-scroll-proportion="0.16473317">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -176,24 +222,6 @@
         <entry file="file://$PROJECT_DIR$/gen/edu/uj/faceRecognizer/faceRecognition/R.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="3" column="19" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".classpath" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.classpath">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -209,20 +237,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/example/faceRecognition/mailing/GmailSender.java" />
-        <option value="$PROJECT_DIR$/src/com/example/faceRecognition/MainActivity.java" />
-        <option value="$PROJECT_DIR$/.project" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/MainActivity.java" />
-        <option value="$PROJECT_DIR$/gen/edu/uj/faceRecognizer/R.java" />
         <option value="$PROJECT_DIR$/gen/edu/uj/faceRecognizer/R.java" />
         <option value="$PROJECT_DIR$/gen/edu/uj/faceRecognizer/BuildConfig.java" />
         <option value="$PROJECT_DIR$/gen/edu/uj/faceRecognizer/faceRecognition/Manifest.java" />
+        <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/bin/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/MainActivity.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/Mail.java" />
         <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/SendEmailTask.java" />
+        <option value="$PROJECT_DIR$/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/res/layout/set_email_layout.xml" />
+        <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/SetEmail.java" />
+        <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/AppPreferences.java" />
+        <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/email/SendEmailTask.java" />
+        <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/email/SetEmail.java" />
+        <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/email/Mail.java" />
       </list>
     </option>
   </component>
@@ -264,6 +294,10 @@
               <option name="myItemId" value="faceRecognizer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="External Libraries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -292,6 +326,82 @@
               <option name="myItemId" value="faceRecognition" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MainActivity.java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognition" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognition" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="email" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="faceRecognizer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -303,12 +413,13 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="OverrideImplement.combined" value="false" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="preferences.pathVariables" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/additionnal.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/mail.jar!/" />
     <property name="AndroidLayoutSelectedEditor" value="android-designer" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -513,7 +624,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.67105263" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32998565" sideWeight="0.67105263" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25681493" sideWeight="0.67105263" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.67105263" order="3" side_tool="false" content_ui="tabs" />
@@ -523,13 +634,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24748924" sideWeight="0.67105263" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24712643" sideWeight="0.67105263" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -598,39 +709,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/../android-sdk/platforms/android-16/android.jar!/org/apache/http/impl/conn/AbstractPooledConnAdapter.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1697" selection-end="1697" vertical-scroll-proportion="0.784689" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="432" selection-end="432" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gen/edu/uj/faceRecognizer/BuildConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="1" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.classpath">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.project">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="24" selection-start="81" selection-end="81" vertical-scroll-proportion="0.0">
@@ -641,13 +719,6 @@
     <entry file="file://$PROJECT_DIR$/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="28" selection-start="80" selection-end="93" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -669,16 +740,33 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/gen/edu/uj/faceRecognizer/faceRecognition/R.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="40" selection-start="553" selection-end="553" vertical-scroll-proportion="0.0">
+        <state line="3" column="19" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gen/edu/uj/faceRecognizer/faceRecognition/R.java">
+    <entry file="file://$PROJECT_DIR$/bin/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="19" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
+        <state line="1" column="68" selection-start="107" selection-end="107" vertical-scroll-proportion="0.034802783">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="40" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/set_email_layout.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state line="16" column="33" selection-start="693" selection-end="693" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -688,22 +776,59 @@
         <state />
       </provider>
       <provider editor-type-id="text-editor">
-        <state line="39" column="44" selection-start="1600" selection-end="1615" vertical-scroll-proportion="0.0">
+        <state line="49" column="38" selection-start="2234" selection-end="2243" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="33" selection-start="268" selection-end="268" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/email/SetEmail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="82" selection-start="987" selection-end="987" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/email/SendEmailTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="27" selection-start="533" selection-end="533" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/AppPreferences.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="5" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="1846" selection-end="1846" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="112" column="43" selection-start="3932" selection-end="3932" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#8128#8293#0" expanded="true" />
+            <element signature="e#8282#8283#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/SendEmailTask.java">
+    <entry file="file://$PROJECT_DIR$/src/edu/uj/faceRecognizer/faceRecognition/email/Mail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="26" selection-start="139" selection-end="139" vertical-scroll-proportion="0.16587678">
-          <folding />
+        <state line="78" column="67" selection-start="2554" selection-end="2554" vertical-scroll-proportion="0.16473317">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -783,6 +908,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>activation</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

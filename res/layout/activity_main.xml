@@ -8,11 +8,9 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="37dp"
             android:text="@string/hello_world"
-            android:textSize="22sp" />
+            android:textSize="22sp" android:layout_centerHorizontal="true" android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"/>
 
     <Button
             android:id="@+id/button1"
@@ -21,7 +19,7 @@
             android:layout_alignLeft="@+id/textView1"
             android:layout_alignRight="@+id/textView1"
             android:layout_below="@+id/textView1"
-            android:layout_marginTop="22dp"
+            android:layout_marginTop="5dp"
             android:text="@string/buttonText1"
             android:onClick="startCamera" />
 
@@ -32,7 +30,7 @@
             android:layout_alignLeft="@+id/textView1"
             android:layout_alignRight="@+id/textView1"
             android:layout_below="@+id/button1"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="5dp"
             android:text="@string/buttonText2"
             android:onClick="takePhoto" />
 
@@ -42,5 +40,22 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView1"
             android:layout_alignRight="@+id/textView1" />
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/send_email"
+            android:id="@+id/button" android:layout_centerHorizontal="true" android:layout_below="@+id/button2"
+            android:layout_alignLeft="@+id/textView1" android:layout_alignRight="@+id/textView1"
+            android:onClick="sendEmail" />
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/set_email"
+            android:layout_marginTop="5dp"
+            android:id="@+id/button4" android:layout_centerHorizontal="true" android:layout_below="@+id/button"
+            android:layout_alignLeft="@+id/textView1" android:layout_alignRight="@+id/textView1"
+            android:onClick="setEmail"/>
 
 </RelativeLayout>

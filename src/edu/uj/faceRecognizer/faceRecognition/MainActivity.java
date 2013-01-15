@@ -31,6 +31,9 @@ import java.util.Map.Entry;
 import com.googlecode.javacpp.Loader;
 import com.googlecode.javacv.cpp.opencv_contrib.FaceRecognizer;
 import com.googlecode.javacv.cpp.opencv_objdetect;
+import edu.uj.faceRecognizer.faceRecognition.email.Mail;
+import edu.uj.faceRecognizer.faceRecognition.email.SendEmailTask;
+import edu.uj.faceRecognizer.faceRecognition.email.SetEmail;
 
 import static com.googlecode.javacv.cpp.opencv_core.*;
 import static com.googlecode.javacv.cpp.opencv_imgproc.*;
@@ -90,6 +93,33 @@ public class MainActivity extends Activity {
             e.printStackTrace();
             new AlertDialog.Builder(this).setMessage(e.getMessage()).create().show();
         }
+    }
+
+    public void sendEmail(View view) {
+        Mail m = new Mail("f.detection@gmail.com", "detection123");
+        AppPreferences preferences = new AppPreferences(this);
+        String email = preferences.getEmail();
+        Toast.makeText(this, email, Toast.LENGTH_LONG);
+        if(email == "none") {
+            Toast.makeText(this, "Set email first!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        String[] toArr = {email};
+        m.setTo(toArr);
+        m.setSubject("Security breach");
+        m.setBody("We have recognized one of saved faces");
+        try {
+            m.addAttachment(Environment.getExternalStorageDirectory().getPath() + "/faceRecognizerTest/test.png");
+        }
+        catch(Exception e) {
+            Log.e("faceRecognizer", e.getMessage(), e);
+        }
+        (new SendEmailTask(this)).execute(m);
+    }
+
+    public void setEmail(View view) {
+        startActivity(new Intent(this, SetEmail.class));
     }
 }
 
