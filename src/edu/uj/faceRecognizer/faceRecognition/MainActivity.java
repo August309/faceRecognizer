@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.graphics.*;
 import android.hardware.Camera;
 import android.hardware.Camera.Size;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -23,6 +25,8 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +36,7 @@ import com.googlecode.javacpp.Loader;
 import com.googlecode.javacv.cpp.opencv_contrib.FaceRecognizer;
 import com.googlecode.javacv.cpp.opencv_objdetect;
 import edu.uj.faceRecognizer.faceRecognition.email.Mail;
+import edu.uj.faceRecognizer.faceRecognition.email.MailSender;
 import edu.uj.faceRecognizer.faceRecognition.email.SendEmailTask;
 import edu.uj.faceRecognizer.faceRecognition.email.SetEmail;
 
@@ -47,6 +52,7 @@ public class MainActivity extends Activity {
     private FaceView faceView;
     private Preview mPreview;
     private static final int CAMERA_PIC_REQUEST = 1337;
+    private File storageDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,27 +60,63 @@ public class MainActivity extends Activity {
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        createDirectories();
+    }
+
+    private void createDirectories() {
+        File folder = new File(Environment.getExternalStorageDirectory() + "/faceRecognizer/");
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+        folder = new File(Environment.getExternalStorageDirectory() + "/faceRecognizerTest/");
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
     }
 
     @Override
     protected void onStart() {
         super.onResume();
         setContentView(R.layout.activity_main);
+        
+        //System.out.println(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString());
+        
+        storageDir = new File(
+        	    Environment.getExternalStorageDirectory().getPath() + "/faceRecognizer/"
+        );	
+        
     }
 
     public void takePhoto(View view) {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
-        System.out.println("Photo Taken!");
+        
+		
+        try {
+			File f = createImageFile();
+			
+			System.out.println(f.getAbsolutePath());
+			cameraIntent.putExtra("output", Uri.fromFile(f));
+			
+			startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+			
+			System.out.println("Photo Taken!!!");
+			
+		} catch (IOException e) {
+			System.out.println("Epic fail!");
+			e.printStackTrace();
+		}
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_PIC_REQUEST) {
             if(resultCode == Activity.RESULT_OK) {
                 System.out.println("CHECKED!");
-                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-                ImageView image = (ImageView) findViewById(R.id.photoResultView);
-                image.setImageBitmap(thumbnail);
+                Context context = getApplicationContext();
+                CharSequence text = "Photo captured & saved!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
         }
     }
@@ -121,12 +163,26 @@ public class MainActivity extends Activity {
     public void setEmail(View view) {
         startActivity(new Intent(this, SetEmail.class));
     }
+    
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "face" + timeStamp + "_";
+        File image = File.createTempFile(
+            imageFileName, 
+            ".jpg",
+            storageDir
+        );
+        String mCurrentPhotoPath = image.getAbsolutePath();
+        System.out.println("path: " + mCurrentPhotoPath);
+        return image;
+    }
 }
 
 // ----------------------------------------------------------------------
 
 class FaceView extends View implements Camera.PreviewCallback {
-    public static final int SUBSAMPLING_FACTOR = 8;
+    public static final int SUBSAMPLING_FACTOR = 6;
     
     private Map<String, Integer> names;
 
@@ -164,16 +220,7 @@ class FaceView extends View implements Camera.PreviewCallback {
         loadFaceRecognizer();
     }
 
-    private void predictFace() {
-        File imgFile = new  File( Environment.getExternalStorageDirectory().getPath() + "/faceRecognizerTest/test.png");
-        if (imgFile == null) {
-            if(toastRequestedCount % toastsInterval == 0) {
-                Toast.makeText(this.context, "No test image!", Toast.LENGTH_SHORT).show();
-            }
-            toastRequestedCount = (toastRequestedCount + 1) % toastsInterval;
-            return;
-        }
-        IplImage testImage = cvLoadImage(imgFile.getAbsolutePath());
+    private void predictFace(IplImage testImage) {
         if (testImage == null) {
             if(toastRequestedCount % toastsInterval == 0) {
                 Toast.makeText(this.context, "No test image!", Toast.LENGTH_SHORT).show();
@@ -182,12 +229,12 @@ class FaceView extends View implements Camera.PreviewCallback {
             return;
         }
 
-        IplImage greyTestImage = IplImage.create(testImage.width(), testImage.height(), IPL_DEPTH_8U, 1);
-        cvCvtColor(testImage, greyTestImage, CV_BGR2GRAY);
-
         if (faceRecognizer != null) {
             try {
-                int predictedLabel = faceRecognizer.predict(greyTestImage);
+                int predictedLabel = faceRecognizer.predict(testImage);
+                if(predictedLabel != -1) {
+                    MailSender.sendEmail(context);
+                }
                 for (Entry<String, Integer> entry : names.entrySet()) {
                     if (entry.getValue().equals(predictedLabel)) {
                         if(toastRequestedCount % toastsInterval == 0) {
@@ -223,12 +270,12 @@ class FaceView extends View implements Camera.PreviewCallback {
             return;
         }
 
-        FilenameFilter pngFilter = new FilenameFilter() {
+        FilenameFilter jpgFilter = new FilenameFilter() {
             public boolean accept(File dir, String name) {
-                return name.toLowerCase().endsWith(".png");
+                return name.toLowerCase().endsWith(".jpg");
             }
         };
-        File[] imageFiles = root.listFiles(pngFilter);
+        File[] imageFiles = root.listFiles(jpgFilter);
 
         MatVector images = new MatVector(imageFiles.length);
         int[] labels = new int[imageFiles.length];
@@ -284,10 +331,10 @@ class FaceView extends View implements Camera.PreviewCallback {
         } catch (RuntimeException e) {
             // The camera has probably just been released, ignore.
         }
-        predictFace();
     }
 
     protected void processImage(byte[] data, int width, int height) {
+        Log.i("faceRecognizer", "procesimage");
         int f = SUBSAMPLING_FACTOR;
         if (grayImage == null || grayImage.width() != width/f || grayImage.height() != height/f) {
             grayImage = IplImage.create(width/f, height/f, IPL_DEPTH_8U, 1);
@@ -305,9 +352,64 @@ class FaceView extends View implements Camera.PreviewCallback {
             }
         }
 
+
+
+
         faces = cvHaarDetectObjects(grayImage, classifier, storage, 1.1, 3, CV_HAAR_DO_CANNY_PRUNING);
+        if (faces != null) {
+            int total = faces.total();
+            for (int i = 0; i < total; i++) {
+                CvRect r = new CvRect(cvGetSeqElem(faces, i));
+
+
+                IplImage faceToRecognize = saveFace(grayImage, r);
+
+                if (faceToRecognize != null) {
+                    predictFace(faceToRecognize);
+                }
+            }
+        }
         postInvalidate();
         cvClearMemStorage(storage);
+    }
+
+    private IplImage saveFace(IplImage image, CvRect region) {
+
+        if(MailSender.emailSent) {
+            IplImage imageCropped;
+            CvSize size = new CvSize();
+            ImageUtilities.getResizedFragment(region);
+            Log.i("faceRecognizer", region.toString());
+
+            if(image != null && ImageUtilities.isRegionValid(region, image.width(), image.height())) {
+                cvResetImageROI(image);
+                cvSetImageROI(image, region);
+
+
+                size.width(region.width());
+                size.height(region.height());
+
+                imageCropped = cvCreateImage(size, IPL_DEPTH_8U, 1);
+
+                cvCopy(image, imageCropped);
+                cvResetImageROI(image);
+                IplImage imageResized;
+                size.width(200);
+                size.height(150);
+                imageResized = cvCreateImage(size, IPL_DEPTH_8U, 1);
+                cvResize(imageCropped, imageResized);
+
+                File testFile = new File(Environment.getExternalStorageDirectory().getPath() + "/faceRecognizerTest/test.png");
+                cvSaveImage(testFile.getAbsolutePath(), imageResized);
+                return imageResized;
+            }
+        }
+
+
+
+        return null;
+
+
     }
 
     @Override
@@ -318,7 +420,7 @@ class FaceView extends View implements Camera.PreviewCallback {
 
         String s = "Face Detector - This side up.";
         float textWidth = paint.measureText(s);
-        canvas.drawText(s, (getWidth()-textWidth)/2, 20, paint);
+        canvas.drawText(s, (getWidth() - textWidth) / 2, 20, paint);
         
         if (faces != null) {
         	Log.i("faces", String.valueOf(faces.total()));

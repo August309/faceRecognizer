@@ -16,6 +16,7 @@ public class SendEmailTask extends AsyncTask<Mail, Void, Void> {
 
     @Override
     protected Void doInBackground(Mail... mails) {
+
         try {
             result = mails[0].send();
         } catch(Exception e) {
@@ -35,6 +36,7 @@ public class SendEmailTask extends AsyncTask<Mail, Void, Void> {
         } else {
             Toast.makeText(context, "Email was not sent", Toast.LENGTH_LONG).show();
         }
+        MailSender.emailSent = true;
     }
 
     public SendEmailTask(Context context) {
