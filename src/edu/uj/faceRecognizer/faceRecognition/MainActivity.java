@@ -174,6 +174,13 @@ class FaceView extends View implements Camera.PreviewCallback {
             return;
         }
         IplImage testImage = cvLoadImage(imgFile.getAbsolutePath());
+        if (testImage == null) {
+            if(toastRequestedCount % toastsInterval == 0) {
+                Toast.makeText(this.context, "No test image!", Toast.LENGTH_SHORT).show();
+            }
+            toastRequestedCount = (toastRequestedCount + 1) % toastsInterval;
+            return;
+        }
 
         IplImage greyTestImage = IplImage.create(testImage.width(), testImage.height(), IPL_DEPTH_8U, 1);
         cvCvtColor(testImage, greyTestImage, CV_BGR2GRAY);
