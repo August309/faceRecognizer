@@ -17,6 +17,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -50,8 +51,6 @@ public class MainActivity extends Activity {
     private FrameLayout layout;
     private FaceView faceView;
     private Preview mPreview;
-    private static final int CAMERA_PIC_REQUEST = 1337;
-    private File storageDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,46 +66,14 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         //System.out.println(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString());
-        
-        storageDir = new File(
-        	    Environment.getExternalStorageDirectory().getPath() + "/RecognizerAlbum/"
-        );	
-        
-    }
 
+    }
+    
     public void takePhoto(View view) {
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        
-		
-        try {
-			File f = createImageFile();
-			
-			System.out.println(f.getAbsolutePath());
-			cameraIntent.putExtra("output", Uri.fromFile(f));
-			
-			startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
-			
-			System.out.println("Photo Taken!!!");
-			
-		} catch (IOException e) {
-			System.out.println("Epic fail!");
-			e.printStackTrace();
-		}
+    	Intent intent = new Intent(this, PersonActivity.class);
+    	startActivity(intent);
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CAMERA_PIC_REQUEST) {
-            if(resultCode == Activity.RESULT_OK) {
-                System.out.println("CHECKED!");
-                Context context = getApplicationContext();
-                CharSequence text = "Photo captured & saved!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-        }
-    }
 
     public void startCamera(View view) {
 
@@ -149,20 +116,6 @@ public class MainActivity extends Activity {
 
     public void setEmail(View view) {
         startActivity(new Intent(this, SetEmail.class));
-    }
-    
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "face" + timeStamp + "_";
-        File image = File.createTempFile(
-            imageFileName, 
-            ".jpg",
-            storageDir
-        );
-        String mCurrentPhotoPath = image.getAbsolutePath();
-        System.out.println("path: " + mCurrentPhotoPath);
-        return image;
     }
 }
 

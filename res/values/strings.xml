@@ -9,5 +9,7 @@
     <string name="send_email">Send email</string>
     <string name="set_email">Set email</string>
     <string name="save">Save</string>
+    <string name="person_name">Type person name here</string>
+    <string name="title_activity_person">PersonActivity</string>
 
 </resources>
