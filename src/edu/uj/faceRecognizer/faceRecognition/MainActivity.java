@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.graphics.*;
 import android.hardware.Camera;
 import android.hardware.Camera.Size;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -23,6 +25,8 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +51,7 @@ public class MainActivity extends Activity {
     private FaceView faceView;
     private Preview mPreview;
     private static final int CAMERA_PIC_REQUEST = 1337;
+    private File storageDir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,21 +65,45 @@ public class MainActivity extends Activity {
     protected void onStart() {
         super.onResume();
         setContentView(R.layout.activity_main);
+        
+        //System.out.println(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString());
+        
+        storageDir = new File(
+        	    Environment.getExternalStorageDirectory().getPath() + "/RecognizerAlbum/"
+        );	
+        
     }
 
     public void takePhoto(View view) {
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
-        System.out.println("Photo Taken!");
+        
+		
+        try {
+			File f = createImageFile();
+			
+			System.out.println(f.getAbsolutePath());
+			cameraIntent.putExtra("output", Uri.fromFile(f));
+			
+			startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);
+			
+			System.out.println("Photo Taken!!!");
+			
+		} catch (IOException e) {
+			System.out.println("Epic fail!");
+			e.printStackTrace();
+		}
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_PIC_REQUEST) {
             if(resultCode == Activity.RESULT_OK) {
                 System.out.println("CHECKED!");
-                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-                ImageView image = (ImageView) findViewById(R.id.photoResultView);
-                image.setImageBitmap(thumbnail);
+                Context context = getApplicationContext();
+                CharSequence text = "Photo captured & saved!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
         }
     }
@@ -120,6 +149,20 @@ public class MainActivity extends Activity {
 
     public void setEmail(View view) {
         startActivity(new Intent(this, SetEmail.class));
+    }
+    
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "face" + timeStamp + "_";
+        File image = File.createTempFile(
+            imageFileName, 
+            ".jpg",
+            storageDir
+        );
+        String mCurrentPhotoPath = image.getAbsolutePath();
+        System.out.println("path: " + mCurrentPhotoPath);
+        return image;
     }
 }
 
