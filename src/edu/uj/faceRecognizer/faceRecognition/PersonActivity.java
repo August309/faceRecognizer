@@ -12,6 +12,7 @@ import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,6 +25,9 @@ public class PersonActivity extends Activity {
     private File storageDir;
     private static File[] takenPhotoFiles;
     private static int restore;
+    private static Button back;
+    private static Button save;
+    private static EditText field;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,13 @@ public class PersonActivity extends Activity {
         counter = -1;
         takenPhotoFiles = new File[3];
         restore = 0;
+        
+        back = (Button)findViewById(R.id.buttonBack);
+        back.setEnabled(false);
+        save = (Button)findViewById(R.id.buttonTwo);
+
+        field = (EditText)findViewById(R.id.personEditText);
+
 	}
 	
     @Override
@@ -99,11 +110,19 @@ public class PersonActivity extends Activity {
 	             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(takenPhotoFiles[restore]));
 	             startActivity(intent);
 	             restore += 1;
-	            
+	             
+	             System.out.println("[RESTORE] " + restore);
+	             if (restore > 2) {
+	             	back.setEnabled(true);
+	             	save.setEnabled(false);
+	             	field.setEnabled(false);
+	             }
                 
             } else {
             	takenPhotoFiles[counter].delete();
             }
+        } else {
+        	System.out.println("Hello:)");
         }
     }
     
@@ -115,6 +134,10 @@ public class PersonActivity extends Activity {
     	for (int i=0; i<3; i++) {
     		smile();
     	}
+    }
+    
+    public void backToMenu(View view) {
+    	this.finish();
     }
     
     private File createImageFile() throws IOException {
