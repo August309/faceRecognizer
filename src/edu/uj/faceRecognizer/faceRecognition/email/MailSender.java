@@ -3,9 +3,10 @@ package edu.uj.faceRecognizer.faceRecognition.email;
 import android.content.Context;
 import android.os.Environment;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
-import edu.uj.faceRecognizer.faceRecognition.AppPreferences;
+import edu.uj.faceRecognizer.faceRecognition.MainActivity;
+import edu.uj.faceRecognizer.faceRecognition.utilities.AppPreferences;
+import edu.uj.faceRecognizer.faceRecognition.utilities.ToastHelper;
 
 /**
  * User: piotrplaneta
@@ -13,16 +14,15 @@ import edu.uj.faceRecognizer.faceRecognition.AppPreferences;
  * Time: 22:01
  */
 public class MailSender {
-    public static boolean emailSent = true;
 
     public static void sendEmail(Context context) {
-        MailSender.emailSent = false;
         Mail m = new Mail("f.detection@gmail.com", "detection123");
         AppPreferences preferences = new AppPreferences(context);
         String email = preferences.getEmail();
         Toast.makeText(context, email, Toast.LENGTH_LONG);
         if(email == "none") {
-            Toast.makeText(context, "Set email first!", Toast.LENGTH_LONG).show();
+            ToastHelper.notify(context, "Set email first");
+            ((MainActivity) context).startPreview();
             return;
         }
 

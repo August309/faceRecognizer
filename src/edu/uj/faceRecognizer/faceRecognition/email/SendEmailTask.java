@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
+import edu.uj.faceRecognizer.faceRecognition.MainActivity;
 
 /**
  * User: piotrplaneta
@@ -36,7 +37,7 @@ public class SendEmailTask extends AsyncTask<Mail, Void, Void> {
         } else {
             Toast.makeText(context, "Email was not sent", Toast.LENGTH_LONG).show();
         }
-        MailSender.emailSent = true;
+        ((MainActivity) context).startPreview();
     }
 
     public SendEmailTask(Context context) {

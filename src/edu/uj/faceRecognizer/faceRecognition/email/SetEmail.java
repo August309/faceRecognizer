@@ -1,12 +1,11 @@
 package edu.uj.faceRecognizer.faceRecognition.email;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import edu.uj.faceRecognizer.faceRecognition.AppPreferences;
+import edu.uj.faceRecognizer.faceRecognition.utilities.AppPreferences;
 import edu.uj.faceRecognizer.faceRecognition.R;
 
 import java.util.regex.Pattern;
