@@ -35,7 +35,7 @@ import static com.googlecode.javacv.cpp.opencv_objdetect.cvHaarDetectObjects;
 public class FaceRecognizer {
 
     opencv_contrib.FaceRecognizer faceRecognizer;
-    public static final int SUBSAMPLING_FACTOR = 2;
+    public static final int SUBSAMPLING_FACTOR = 4;
     private Map<String, Integer> names;
     private opencv_core.IplImage grayImage;
     private opencv_objdetect.CvHaarClassifierCascade classifier;
@@ -128,7 +128,7 @@ public class FaceRecognizer {
 
         faceRecognizer = com.googlecode.javacv.cpp.opencv_contrib.createFisherFaceRecognizer();
 
-        faceRecognizer.set("threshold", 1000.0);
+        faceRecognizer.set("threshold", 2000.0);
 
         try {
             faceRecognizer.train(images, labels);
@@ -187,18 +187,22 @@ public class FaceRecognizer {
 
         if (faceRecognizer != null) {
             try {
+                String recognizedPerson = "";
                 int predictedLabel = faceRecognizer.predict(testImage);
 
                 for (Map.Entry<String, Integer> entry : names.entrySet()) {
                     if (entry.getValue().equals(predictedLabel)) {
-                        ToastHelper.notify(context, entry.getKey());
 
+                        ToastHelper.notify(context, entry.getKey());
+                        recognizedPerson = entry.getKey();
                     }
+
                 }
                 if(predictedLabel != -1) {
                     ((MainActivity) context).stopPreview();
-                    MailSender.sendEmail(context);
+                    MailSender.sendEmail(context, recognizedPerson);
                 }
+
             } catch (Exception e) {
                 ToastHelper.notify(context, "Problem with predicting!" + e.getMessage());
                 Log.e("faceRecognizer", e.getMessage());

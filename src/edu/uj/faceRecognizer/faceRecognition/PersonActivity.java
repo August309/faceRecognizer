@@ -122,6 +122,9 @@ public class PersonActivity extends Activity {
 
             } else {
                 takenPhotoFiles[counter].delete();
+                counter = -1;
+                takenPhotoFiles = new File[3];
+                restore = 0;
             }
         } else {
 
@@ -152,7 +155,7 @@ public class PersonActivity extends Activity {
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = personName + "_" + timeStamp;
+        String imageFileName = personName + "-" + timeStamp;
         File image = File.createTempFile(
                 imageFileName,
                 ".jpg",

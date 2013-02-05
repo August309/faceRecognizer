@@ -15,7 +15,7 @@ import edu.uj.faceRecognizer.faceRecognition.utilities.ToastHelper;
  */
 public class MailSender {
 
-    public static void sendEmail(Context context) {
+    public static void sendEmail(Context context, String name) {
         Mail m = new Mail("f.detection@gmail.com", "detection123");
         AppPreferences preferences = new AppPreferences(context);
         String email = preferences.getEmail();
@@ -29,7 +29,7 @@ public class MailSender {
         String[] toArr = {email};
         m.setTo(toArr);
         m.setSubject("Security breach");
-        m.setBody("We have recognized one of saved faces");
+        m.setBody("We have recognized one of saved faces " + name);
         try {
             m.addAttachment(Environment.getExternalStorageDirectory().getPath() + "/faceRecognizerTest/test.png");
         }

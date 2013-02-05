@@ -14,17 +14,21 @@ public class ToastHelper {
 
     private static int sameMessageCounter = 0;
     private static int differentMessageCounter = 0;
+    private static Toast lastToast = null;
 
     public static void notify(Context context, String message) {
         if(message != lastMessage) {
-            if (differentMessageCounter++ % 1 == 0) {
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-            } else {
-                if(sameMessageCounter++ % 30 == 0) {
-                    Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-                }
+            if (differentMessageCounter % 5 == 0) {
+                lastToast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+                //lastToast.show();
+            }
+        } else {
+            if(sameMessageCounter++ % 10 == 0) {
+                lastToast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+                //lastToast.show();
             }
         }
+
         Log.i("faceRecognizer", message);
         lastMessage = message;
     }
